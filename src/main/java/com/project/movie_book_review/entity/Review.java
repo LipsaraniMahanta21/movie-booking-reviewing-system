@@ -1,12 +1,13 @@
 package com.project.movie_book_review.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.movie_book_review.dto.ReviewResponse;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -33,4 +34,19 @@ public class Review {
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
+
+    public static ReviewResponse toReviewResponse(Review review) {
+        return ReviewResponse.builder()
+                .review(review.movieReview)
+                .rating(review.rating)
+                .build();
+    }
+    public static List<ReviewResponse> toReviewResponseList(List<Review> reviews) {
+        if(Objects.isNull(reviews)){
+            return null;
+        }else{
+            return reviews.stream().map(Review::toReviewResponse).toList();
+        }
+
+    }
 }
