@@ -2,7 +2,8 @@ package com.project.movie_book_review.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.movie_book_review.ShowResource;
+
+import com.project.movie_book_review.resources.ShowResource;
 
 import jakarta.persistence.*;
 
@@ -12,6 +13,7 @@ import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import org.springframework.util.CollectionUtils;
 
 import tools.jackson.databind.annotation.JsonDeserialize;
