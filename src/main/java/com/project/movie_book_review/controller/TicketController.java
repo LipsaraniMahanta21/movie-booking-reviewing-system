@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("ticket")
 public class TicketController {
     @Autowired
     private TicketService ticketService;
