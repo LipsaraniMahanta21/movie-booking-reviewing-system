@@ -1,7 +1,7 @@
 package com.project.movie_book_review.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.movie_book_review.resources.TicketResource;
+import com.project.movie_book_review.dto.TicketResource;
 import jakarta.persistence.*;
 
 import lombok.*;

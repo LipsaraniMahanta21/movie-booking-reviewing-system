@@ -1,4 +1,4 @@
-package com.project.movie_book_review.resources;
+package com.project.movie_book_review.dto;
 
 import com.project.movie_book_review.entity.SeatType;
 import jakarta.validation.constraints.Min;
@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 @Builder
-public class BookingResource {
+public class BookingRequest {
 
     @NotEmpty(message="SeatNumbers cannot be empty")
     private Set<String> seatNumbers;

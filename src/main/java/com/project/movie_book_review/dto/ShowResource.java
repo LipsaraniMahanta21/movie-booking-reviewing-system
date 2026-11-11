@@ -1,4 +1,4 @@
-package com.project.movie_book_review.resources;
+package com.project.movie_book_review.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.movie_book_review.entity.Time;
@@ -6,6 +6,8 @@ import com.project.movie_book_review.entity.Time;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.validation.constraints.NotNull;
 
 import tools.jackson.databind.annotation.JsonDeserialize;
 import tools.jackson.databind.annotation.JsonSerialize;
@@ -25,14 +27,13 @@ import java.util.List;
 public class ShowResource {
     private int id;
 
-//    @NonNull(message = "Show time is mandatory")
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd'T'HH:mm:ss[.SSS][.SS][.s]")
     @JsonSerialize(using = LongStreamSerializer.class)
     @JsonDeserialize(using= LocalDateTimeDeserializer.class)
     private LocalDateTime showTime;
     private Time time;
 
-//    @NonNull(message= "Movie is Mandatory for show")
+    @NotNull(message= "Movie is Mandatory for show")
     private int movieId;
 
     private int theaterId;

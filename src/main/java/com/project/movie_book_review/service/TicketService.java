@@ -10,9 +10,9 @@ import com.project.movie_book_review.entity.User;
 import com.project.movie_book_review.repository.ShowRepository;
 import com.project.movie_book_review.repository.TicketRepository;
 import com.project.movie_book_review.repository.UserRepository;
-import com.project.movie_book_review.resources.BookingResource;
-import com.project.movie_book_review.resources.TicketMessage;
-import com.project.movie_book_review.resources.TicketResource;
+import com.project.movie_book_review.dto.BookingRequest;
+import com.project.movie_book_review.dto.TicketMessage;
+import com.project.movie_book_review.dto.TicketResource;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
@@ -43,22 +43,22 @@ public class TicketService {
 
     @Autowired
     TicketRepository ticketRepository;
-    public TicketResource bookTicket(BookingResource bookingResource){
-        Optional<User> optionalUser=userRepository.findById(bookingResource.getUserId());
+    public TicketResource bookTicket(BookingRequest bookingRequest){
+        Optional<User> optionalUser=userRepository.findById(bookingRequest.getUserId());
         if(optionalUser.isEmpty()){
-            throw new NotFoundException("User not found with ID: "+bookingResource.getUserId());
+            throw new NotFoundException("User not found with ID: "+ bookingRequest.getUserId());
         }
 
-        Optional<Show> optionalShow=showRepository.findById(bookingResource.getShowId());
+        Optional<Show> optionalShow=showRepository.findById(bookingRequest.getShowId());
         if(optionalShow.isEmpty()){
-            throw new NotFoundException("Show not found with ID: "+bookingResource.getShowId());
+            throw new NotFoundException("Show not found with ID: "+ bookingRequest.getShowId());
         }
         //logic to check whether seats are available or not
-        Set<String> requestedSeats=bookingResource.getSeatNumbers();
+        Set<String> requestedSeats= bookingRequest.getSeatNumbers();
         List<ShowSeat> showSeatList=optionalShow.get().getSeats();
 
         showSeatList=showSeatList.stream()
-                .filter(seat->seat.getSeatType().equals(bookingResource.getSeatType())
+                .filter(seat->seat.getSeatType().equals(bookingRequest.getSeatType())
                         && !seat.isBooked()
                         && requestedSeats.contains(seat.getSeatNumber()))
                 .collect(Collectors.toList());

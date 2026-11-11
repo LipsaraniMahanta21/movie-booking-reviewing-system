@@ -1,7 +1,7 @@
-package com.project.movie_book_review.resources;
+package com.project.movie_book_review.dto;
 
 import lombok.*;
-import com.project.movie_book_review.resources.ShowResource;
+
 import java.util.Date;
 
 @Getter

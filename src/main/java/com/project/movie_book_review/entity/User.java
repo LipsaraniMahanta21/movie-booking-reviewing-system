@@ -1,6 +1,6 @@
 package com.project.movie_book_review.entity;
 
-import com.project.movie_book_review.resources.UserResource;
+import com.project.movie_book_review.dto.UserRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -45,21 +45,21 @@ public class User implements UserDetails {
     @Column(name = "role" ,columnDefinition = "varchar(30) default 'USER'")
     private Role role;
 
-    public static User toEntity(UserResource userResource) {
+    public static User toEntity(UserRequest userRequest) {
 
         return User.builder()
-                .name(userResource.getName())
-                .password(userResource.getPassword())
-                .role(userResource.getRole())
-                .mobile(userResource.getMobile())
-                .email(userResource.getEmail())
+                .name(userRequest.getName())
+                .password(userRequest.getPassword())
+                .role(userRequest.getRole())
+                .mobile(userRequest.getMobile())
+                .email(userRequest.getEmail())
                 .build();
 
     }
 
-    public static UserResource toResource(User user) {
+    public static UserRequest toResource(User user) {
 
-        return UserResource.builder()
+        return UserRequest.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .mobile(user.getMobile())

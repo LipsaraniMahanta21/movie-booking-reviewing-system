@@ -1,4 +1,4 @@
-package com.project.movie_book_review.resources;
+package com.project.movie_book_review.dto;
 
 import com.project.movie_book_review.entity.Role;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @ToString
-public class UserResource {
+public class UserRequest {
 
     private long id;
 

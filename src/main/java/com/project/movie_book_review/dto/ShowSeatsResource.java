@@ -1,4 +1,4 @@
-package com.project.movie_book_review.resources;
+package com.project.movie_book_review.dto;
 
 import com.project.movie_book_review.entity.SeatType;
 import lombok.*;

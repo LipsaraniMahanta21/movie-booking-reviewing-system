@@ -1,7 +1,7 @@
 package com.project.movie_book_review.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.movie_book_review.resources.TheaterResource;
+import com.project.movie_book_review.dto.TheaterResource;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;

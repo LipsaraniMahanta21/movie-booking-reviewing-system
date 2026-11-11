@@ -1,9 +1,6 @@
 package com.project.movie_book_review.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import com.project.movie_book_review.resources.ShowResource;
+import com.project.movie_book_review.dto.ShowResource;
 
 import jakarta.persistence.*;
 
@@ -15,11 +12,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import org.springframework.util.CollectionUtils;
-
-import tools.jackson.databind.annotation.JsonDeserialize;
-import tools.jackson.databind.annotation.JsonSerialize;
-import tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer;
-import tools.jackson.databind.ext.javatime.ser.LocalDateTimeSerializer;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
