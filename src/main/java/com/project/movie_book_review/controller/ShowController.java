@@ -1,6 +1,6 @@
 package com.project.movie_book_review.controller;
 
-import com.project.movie_book_review.resources.ShowResource;
+import com.project.movie_book_review.dto.ShowResource;
 import com.project.movie_book_review.service.ShowService;
 
 import org.springframework.beans.factory.annotation.Autowired;
