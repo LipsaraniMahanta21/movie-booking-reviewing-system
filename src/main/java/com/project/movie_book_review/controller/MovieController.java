@@ -2,6 +2,7 @@ package com.project.movie_book_review.controller;
 
 import com.project.movie_book_review.entity.Genre;
 import com.project.movie_book_review.dto.MovieResponse;
+import com.project.movie_book_review.entity.Language;
 import com.project.movie_book_review.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,5 +26,10 @@ public class MovieController {
     @GetMapping("/{genre}")
     public List<MovieResponse> getMoviesByGenre(@PathVariable Genre genre){
         return movieService.getMoviesByGenre(genre);
+    }
+
+    @GetMapping("/{language}")
+    public List<MovieResponse> getMoviesByLanguage(@PathVariable Language language){
+        return movieService.getMoviesByLanguage(language);
     }
 }

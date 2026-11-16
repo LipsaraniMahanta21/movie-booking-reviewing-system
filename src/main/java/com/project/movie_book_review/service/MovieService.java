@@ -2,6 +2,7 @@ package com.project.movie_book_review.service;
 
 import com.project.movie_book_review.dto.MovieResponse;
 import com.project.movie_book_review.entity.Genre;
+import com.project.movie_book_review.entity.Language;
 import com.project.movie_book_review.entity.Movie;
 import com.project.movie_book_review.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class MovieService {
     MovieRepository movieRepository;
 
     public MovieResponse findMovie(String title) {
-        Movie movie= movieRepository.findMovieByTitle(title).orElse(null);
+        Movie movie= movieRepository.findAllMovieByTitle(title).orElse(null);
         if(Objects.nonNull(movie)){
             return movie.toMovieResponse();
         }
@@ -29,9 +30,33 @@ public class MovieService {
         }
         List<Movie> movieList = movieRepository.findAllByGenre(genre);
         if(!CollectionUtils.isEmpty(movieList)) {
-            List<MovieResponse> movieResponseList = movieList.stream().sorted(Comparator.comparing(Movie::getRating, Comparator.reverseOrder()))
-                    .map(m -> m.toMovieResponse()).toList();
+            List<MovieResponse> movieResponseList =
+                    movieList.stream()
+                    .sorted(Comparator.comparing(Movie::getRating, Comparator.reverseOrder()))
+                    .map(m -> m.toMovieResponse())
+                    .toList();
             if (movieResponseList.size() > 5) {
+                return movieResponseList.subList(0, 4);
+            }
+            return movieResponseList;
+        }
+        return new ArrayList<>();
+    }
+
+    public List<MovieResponse> getMoviesByLanguage(Language language){
+        if(Arrays.stream(Language.values()).noneMatch(l -> l.equals(language))) {
+            return new ArrayList<>();
+        }
+
+        List<Movie> movieList=movieRepository.findAllByLanguage(language);
+
+        if(!Objects.nonNull(movieList)){
+            List<MovieResponse> movieResponseList=
+                    movieList.stream()
+                            .sorted(Comparator.comparing(Movie::getRating, Comparator.reverseOrder()))
+                            .map(movie ->movie.toMovieResponse())
+                            .toList();
+            if(movieList.size()>5){
                 return movieResponseList.subList(0, 4);
             }
             return movieResponseList;

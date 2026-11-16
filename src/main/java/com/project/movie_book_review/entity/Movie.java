@@ -25,6 +25,8 @@ public class Movie implements Serializable {
     private String title;
     @Enumerated(EnumType.STRING)
     private Genre genre;
+    @Enumerated(EnumType.STRING)
+    private Language language;
     private Double rating;
 
     @OneToMany(mappedBy = "movie")
